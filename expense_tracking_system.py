@@ -61,8 +61,7 @@ def main():
         print("1. Add Expense")
         print("2. View Expenses")
         print("3. View Spending Pattern")
-        print("4. To view data in database")
-        print("5. Quit")
+        print("4. Quit")
 
         option = input("Enter your option(1-4): ")
 
@@ -76,8 +75,6 @@ def main():
         elif option == "3":
             tracker.view_spending_pattern()
         elif option == "4":
-            tracker.view_loaded_data()
-        elif option == "5":
             print("Exiting the Expense Tracker System. Goodbye!")
             break
         else:
