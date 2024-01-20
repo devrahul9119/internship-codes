@@ -56,7 +56,7 @@ def main():
         elif option == "3":
             tracker.view_spending_pattern()
         elif option == "4":
-            print("Exiting the Expense Tracker. Goodbye!")
+            print("Exiting the Expense Tracker System. Goodbye!")
             break
         else:
             print("Invalid option. Please enter a number between 1 and 4.")
