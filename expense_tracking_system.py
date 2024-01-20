@@ -37,10 +37,20 @@ class ExpenseTracker:
                 print(f"  {category}: {total}")
         
     def store_data(self):
-        with open('expenses.json', 'a') as f:
-            if f.tell() > 0:
-                f.write(',\n')  
-            json.dump({key: value for key, value in self.expenses.items()}, f, indent=4)           
+        try:
+            # Load existing data from the file
+            with open('expenses.json', 'r') as f:
+                existing_data = json.load(f)
+        except (FileNotFoundError, json.decoder.JSONDecodeError):
+            # If the file is not found or not valid JSON, initialize with an empty list
+            existing_data = []
+
+        # Append the new entry to the existing data
+        existing_data.append({key: value for key, value in self.expenses.items()})
+
+        # Write the entire updated list back to the file
+        with open('expenses.json', 'w') as f:
+            json.dump(existing_data, f, indent=4) 
             
     def load_data(self):
         try:
