@@ -1,4 +1,5 @@
 import datetime
+import json
 
 class ExpenseTracker:
     def __init__(self):
@@ -34,6 +35,11 @@ class ExpenseTracker:
             print("\nSpending Pattern:")
             for category, total in category_totals.items():
                 print(f"  {category}: {total}")
+        
+    def store_data(self):
+        with open('expenses.json', 'a') as f:
+            json.dump({key: value for key, value in self.expenses.items()}, f, indent=4)
+            f.write('\n')            
 
 def main():
     tracker = ExpenseTracker()
@@ -51,6 +57,7 @@ def main():
             amount = float(input("Enter the expense amount: "))
             category = input("Enter the expense category: ")
             tracker.add_expense(amount, category)
+            tracker.store_data()
         elif option == "2":
             tracker.view_expenses()
         elif option == "3":
