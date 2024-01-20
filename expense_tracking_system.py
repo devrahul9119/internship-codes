@@ -37,7 +37,7 @@ class ExpenseTracker:
 
 def main():
     tracker = ExpenseTracker()
-
+    print('This is expense Tracking System you can use this according to Your Requirement :-')
     while True:
         print("\nExpense Tracker Menu:")
         print("1. Add Expense")
@@ -63,3 +63,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
