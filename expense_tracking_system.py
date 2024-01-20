@@ -45,7 +45,7 @@ def main():
         print("3. View Spending Pattern")
         print("4. Quit")
 
-        option = input("Enter your option (1-4): ")
+        option = input("Enter your option(1-4): ")
 
         if option == "1":
             amount = float(input("Enter the expense amount: "))
