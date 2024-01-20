@@ -61,19 +61,6 @@ class ExpenseTracker:
             print("File 'expenses.json' not found.")
             return {}
 
-    def view_loaded_data(self):
-        loaded_data = self.load_data()
-
-        if loaded_data:
-            print("\nLoaded Data:")
-            for entry in loaded_data:
-                for date, expenses in entry.items():
-                    print(f"\nDate: {date}")
-                    for expense in expenses:
-                        print(f"  Amount: {expense['amount']}, Category: {expense['category']}")
-        else:
-            print("No data loaded.")
-
 def main():
     tracker = ExpenseTracker()
     
