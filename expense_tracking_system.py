@@ -52,14 +52,6 @@ class ExpenseTracker:
         with open('expenses.json', 'w') as f:
             json.dump(existing_data, f, indent=4) 
             
-    def load_data(self):
-        try:
-            with open('expenses.json', 'r') as f:
-                data = json.load(f)
-                return data
-        except FileNotFoundError:
-            print("File 'expenses.json' not found.")
-            return {}
 
 def main():
     tracker = ExpenseTracker()
