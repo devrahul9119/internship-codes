@@ -38,8 +38,31 @@ class ExpenseTracker:
         
     def store_data(self):
         with open('expenses.json', 'a') as f:
-            json.dump({key: value for key, value in self.expenses.items()}, f, indent=4)
-            f.write('\n')            
+            if f.tell() > 0:
+                f.write(',\n')  
+            json.dump({key: value for key, value in self.expenses.items()}, f, indent=4)           
+            
+    def load_data(self):
+        try:
+            with open('expenses.json', 'r') as f:
+                data = json.load(f)
+                return data
+        except FileNotFoundError:
+            print("File 'expenses.json' not found.")
+            return {}
+
+    def view_loaded_data(self):
+        loaded_data = self.load_data()
+
+        if loaded_data:
+            print("\nLoaded Data:")
+            for entry in loaded_data:
+                for date, expenses in entry.items():
+                    print(f"\nDate: {date}")
+                    for expense in expenses:
+                        print(f"  Amount: {expense['amount']}, Category: {expense['category']}")
+        else:
+            print("No data loaded.")
 
 def main():
     tracker = ExpenseTracker()
@@ -49,7 +72,8 @@ def main():
         print("1. Add Expense")
         print("2. View Expenses")
         print("3. View Spending Pattern")
-        print("4. Quit")
+        print("4. To view data in database")
+        print("5. Quit")
 
         option = input("Enter your option(1-4): ")
 
@@ -63,6 +87,8 @@ def main():
         elif option == "3":
             tracker.view_spending_pattern()
         elif option == "4":
+            tracker.view_loaded_data()
+        elif option == "5":
             print("Exiting the Expense Tracker System. Goodbye!")
             break
         else:
